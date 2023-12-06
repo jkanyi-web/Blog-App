@@ -1,2 +1,21 @@
-<h1>Single User</h1>
-<p>This is a placeholder for a single user.</p>
+<div class="jumbotron shadow p-3">
+  <%= image_tag(@user.photo, alt: @user.name, class: 'user-image') %>
+  <h2 class="display-2 font-weight-bold mt-2 d-inline-block"><%= @user.name %></h2>
+  <p class="right">Number of posts: <%= @user.posts.count %></p>
+</div>
+
+<div class="jumbotron shadow p-3">
+  <p>Bio</p>
+  <p><%= @user.bio %></p>
+</div>
+
+<% @user.posts.each_with_index do |post, index| %>
+  <div class="jumbotron p-3 shadow">
+    <p>Post#<%= index + 1 %></p>
+    <p><%= post.title %></p>
+  </div>
+<% end %>
+
+<div class="d-flex justify-content-center mt-5 mb-5">
+  <%= link_to 'See All Posts', user_posts_path(@user), class: 'btn btn-dark' %>
+</div>

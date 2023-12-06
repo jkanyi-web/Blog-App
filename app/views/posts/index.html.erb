@@ -1,2 +1,20 @@
-<h1>All Posts for a Given User</h1>
-<p>Here is a list of posts for a given user.</p>
+<div class="container mt-3">
+  <%= image_tag(@user.photo, alt: @user.name, class: 'user-image') %>
+  <h2 class="d-inline-block"><%= @user.name %></h2>
+  <p class="right">Number of Posts: <%= @user.posts.count %></p>
+</div>
+<% @posts.each do |post| %>
+  <div class="jumbotron shadow p-5">
+    <h4><%= link_to post.title, user_post_path(@user, post), class: 'text-decoration-none text-dark' %></h4>
+    <p class="right">Comments: <%= post.comments.count %> Likes: <%= post.likes.count %></p>
+    <% if post.comments.any? %>
+      <div class="jumbotron shadow p-5">
+        <% post.comments.each do |comment| %>
+          <p><%= comment.user.name %>: <%= comment.text %></p>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+<% end %>
+
+<%= paginate @posts, class: 'pagination' %>
