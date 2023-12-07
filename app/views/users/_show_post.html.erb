@@ -1,0 +1,9 @@
+<div class="jumbotron p-3 shadow">
+  <h6>Post#<%= post_counter + 1 %></h6>
+  <h5><%= link_to post.title, user_post_path(@user, post), class: 'text-decoration-none text-dark' %></h5>
+  <p><%= post.text %></p>
+  <p>
+    <small>Comments: <%= post.comments_counter || 0 %>,</small> 
+    <small>Likes: <%= post.likes_counter || 0 %></small>
+  </p>
+</div>

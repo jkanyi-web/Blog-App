@@ -1,5 +1,5 @@
 <div class="jumbotron shadow p-3">
-  <%= image_tag(@user.photo, alt: @user.name, class: 'user-image') %>
+  <%= image_tag(@user.photo || 'default_image.jpg', alt: @user.name, class: 'user-image') %>
   <h2 class="display-2 font-weight-bold mt-2 d-inline-block"><%= @user.name %></h2>
   <p class="right">Number of posts: <%= @user.posts.count %></p>
 </div>
@@ -9,17 +9,7 @@
   <p><%= @user.bio %></p>
 </div>
 
-<% @user.recent_posts.each_with_index do |post, index| %>
-  <div class="jumbotron p-3 shadow">
-    <h6>Post#<%= index + 1 %></h6>
-    <h5><%= link_to post.title, user_post_path(@user, post), class: 'text-decoration-none text-dark' %></h5>
-    <p><%= post.text %></p>
-    <p>
-      <small>Comments: <%= post.comments_counter || 0 %>,</small> 
-      <small>Likes: <%= post.likes_counter || 0 %></small>
-    </p>
-  </div>
-<% end %>
+<%= render partial: 'show_post', collection: @user.recent_posts, as: :post %>
 
 <div class="d-flex justify-content-center mt-5 mb-5">
   <%= link_to 'See All Posts', user_posts_path(@user), class: 'btn btn-dark' %>
