@@ -9,7 +9,7 @@
     <p class="right">Comments: <%= post.comments.count %> Likes: <%= post.likes.count %></p>
     <% if post.comments.any? %>
       <div class="jumbotron shadow p-5">
-        <% post.comments.each do |comment| %>
+        <% post.recent_comments.each do |comment| %>
           <p><%= comment.user.name %>: <%= comment.text %></p>
         <% end %>
       </div>

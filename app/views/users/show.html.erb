@@ -5,14 +5,19 @@
 </div>
 
 <div class="jumbotron shadow p-3">
-  <p>Bio</p>
+  <h5>Bio</h5>
   <p><%= @user.bio %></p>
 </div>
 
-<% @user.posts.each_with_index do |post, index| %>
+<% @user.recent_posts.each_with_index do |post, index| %>
   <div class="jumbotron p-3 shadow">
-    <p>Post#<%= index + 1 %></p>
-    <p><%= post.title %></p>
+    <h6>Post#<%= index + 1 %></h6>
+    <h5><%= link_to post.title, user_post_path(@user, post), class: 'text-decoration-none text-dark' %></h5>
+    <p><%= post.text %></p>
+    <p>
+      <small>Comments: <%= post.comments_counter || 0 %>,</small> 
+      <small>Likes: <%= post.likes_counter || 0 %></small>
+    </p>
   </div>
 <% end %>
 
