@@ -1,5 +1,5 @@
 <div class="container mt-3">
-  <%= image_tag(@user.photo, alt: @user.name, class: 'user-image') %>
+  <%= image_tag(@user.photo || 'default_image.jpg', alt: @user.name, class: 'user-image') %>
   <h2 class="d-inline-block"><%= @user.name %></h2>
   <p class="right">Number of Posts: <%= @user.posts.count %></p>
 </div>
