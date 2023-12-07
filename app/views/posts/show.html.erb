@@ -1,2 +1,12 @@
-<h1>Single Post</h1>
-<p>This is a placeholder for a single post.</p>
+<div class="jumbotron shadow p-5">
+  <h6 class="mb-3">Posted by: <%= @post.author.name %></h6>
+  <h4><%= @post.title %></h4>
+  <p class="right"> Comments: <%= @post.comments.count %>, Likes: <%= @post.likes.count %></p>
+  <p><%= @post.text %></p>
+</div>
+
+<div class="jumbotron shadow p-5">
+<% @post.comments.each do |comment| %>
+    <p><%= comment.user.name %>: <%= comment.text %></p>
+    <% end %>
+  </div>

@@ -13,3 +13,33 @@
  *= require_tree .
  *= require_self
  */
+li {
+  list-style: none;
+}
+
+p {
+  font-weight: 300;
+}
+
+.right {
+  text-align: right;
+}
+
+.pagination {
+  margin-top: 20px;
+}
+
+.pagination a {
+  color: black;
+  font-weight: 500;
+}
+
+.pagination .active a {
+  background-color: black;
+}
+
+.user-image {
+  width: 150px;
+  height: 150px;
+  margin-right: 30px;
+}

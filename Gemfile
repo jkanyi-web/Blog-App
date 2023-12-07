@@ -72,3 +72,6 @@ end
 gem 'rubocop', '>= 1.0', '< 2.0'
 
 gem 'shoulda-matchers'
+
+# pagination
+gem 'kaminari'
