@@ -1,10 +1,21 @@
 <div class="jumbotron shadow p-5">
   <h6 class="mb-3">Posted by: <%= @post.author.name %></h6>
   <h4><%= @post.title %></h4>
-  <p class="right"> Comments: <%= @comments_count %>, Likes: <%= @likes_count %></p>
+  <p class="right"> Comments: <%= @post.comments.count %>, Likes: <%= @post.likes.count %></p>
   <p><%= @post.text %></p>
+
+  <%= form_with model: [@user, @post, @post.likes.build], local: true do |f| %>
+    <%= f.submit "Like" %>
+  <% end %>
 </div>
 
 <div class="jumbotron shadow p-5">
   <%= render @post.comments %>
+
+  <%= form_with model: [@user, @post, @post.comments.build] do |f| %>
+    <%= f.label :text %>
+    <%= f.text_area :text %>
+
+    <%= f.submit "Add Comment" %>
+  <% end %>
 </div>
