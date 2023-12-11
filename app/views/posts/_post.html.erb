@@ -1,9 +1,9 @@
 <div class="jumbotron shadow p-5">
   <h4><%= link_to post.title, user_post_path(@user, post), class: 'text-decoration-none text-dark' %></h4>
-  <p class="right">Comments: <%= post.comments.count %> Likes: <%= post.likes.count %></p>
+  <p class="right">Comments: <%= post.comments.size %> Likes: <%= post.likes.size %></p>
   <% if post.comments.any? %>
     <div class="jumbotron shadow p-5">
-      <% post.recent_comments.each do |comment| %>
+      <% post.comments.each do |comment| %>
         <p><%= comment.user.name %>: <%= comment.text %></p>
       <% end %>
     </div>
