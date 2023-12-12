@@ -35,6 +35,7 @@ rescue ActiveRecord::PendingMigrationError => e
   abort e.to_s.strip
 end
 RSpec.configure do |config|
+  config.include Rails.application.routes.url_helpers
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_paths = [
     Rails.root.join('spec/fixtures')
@@ -82,8 +83,7 @@ RSpec.configure do |config|
 
   Capybara.default_driver = :selenium_edge
 
-
-    config.include FactoryBot::Syntax::Methods
-  end
+  config.include FactoryBot::Syntax::Methods
+end
 
 # rubocop:enable Lint/ShadowingOuterLocalVariable

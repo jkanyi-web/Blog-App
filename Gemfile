@@ -26,6 +26,8 @@ gem 'stimulus-rails'
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem 'jbuilder'
 
+gem 'kaminari'
+
 # Use Redis adapter to run Action Cable in production
 # gem "redis", ">= 4.0.1"
 
@@ -46,12 +48,12 @@ gem 'bootsnap', require: false
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
+  gem 'capybara'
   gem 'debug', platforms: %i[mri windows]
+  gem 'factory_bot_rails'
   gem 'rails-controller-testing'
   gem 'rspec-rails'
-  gem 'capybara'
   gem 'webdrivers'
-  gem 'factory_bot_rails'
 end
 
 group :development do
@@ -71,9 +73,8 @@ group :test do
 end
 
 # Rubocop linter
+# pagination
+
 gem 'rubocop', '>= 1.0', '< 2.0'
 
 gem 'shoulda-matchers'
-
-# pagination
-gem 'kaminari'

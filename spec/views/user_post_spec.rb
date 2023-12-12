@@ -5,7 +5,7 @@ RSpec.describe 'Post Details Page', type: :system do
   let!(:post) { create(:post, author: user, text: 'This is the text of the post.') }
 
   before do
-    visit post_path(post)
+    visit user_post_path(user, post)
   end
 
   it 'displays post details, comments and like button' do
