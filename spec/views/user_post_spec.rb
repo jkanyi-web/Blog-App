@@ -2,13 +2,13 @@ require 'rails_helper'
 
 RSpec.describe 'Post Details Page', type: :system do
   let!(:user) { create(:user) }
-  let!(:post) { create(:post, author: user) }
+  let!(:post) { create(:post, author: user, text: 'This is the text of the post.') }
 
   before do
     visit post_path(post)
   end
 
-  it 'displays post details, comments nd like button' do
+  it 'displays post details, comments and like button' do
     expect(page).to have_content(post.title)
     expect(page).to have_content("Posted by: #{post.author.name}")
     expect(page).to have_content("Comments: #{post.comments.count}")

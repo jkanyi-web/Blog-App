@@ -37,6 +37,5 @@ RSpec.describe 'User Profile Page', type: :system do
 
     first('.user-post').click
     expect(page).to have_current_path(user_post_path(user, user.posts.first))
-
   end
 end

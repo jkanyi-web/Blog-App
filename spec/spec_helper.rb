@@ -43,4 +43,10 @@ RSpec.configure do |config|
   # inherited by the metadata hash of host groups and examples, rather than
   # triggering implicit auto-inclusion in groups with matching metadata.
   config.shared_context_metadata_behavior = :apply_to_host_groups
+
+  RSpec.configure do |rspec_config|
+    rspec_config.before(:each, type: :system) do
+      Webdrivers::Chromedriver.required_version = '88.0.4324.96'
+    end
+  end
 end
