@@ -8,7 +8,7 @@ RSpec.describe 'User Profile and Posts Page', type: :system do
     visit user_posts_path(user)
   end
 
-  it 'displays user profile and posts details and pagination' do
+  it 'displays user profile and posts details, five latest comments and pagination' do
     expect(page).to have_css('img.user-image')
     expect(page).to have_content(user.name)
     expect(page).to have_content("Number of Posts: #{user.posts.count}")
@@ -19,6 +19,10 @@ RSpec.describe 'User Profile and Posts Page', type: :system do
       expect(page).to have_content("Comments: #{post.comments.count}")
       expect(page).to have_content("Likes: #{post.likes.count}")
       expect(page).to have_link(post.title, href: post_path(post))
+    end
+
+    post.recent_comments.limit(5).each do |comment|
+      expect(page).to have_content(comment.text)
     end
 
     expect(page).to have_selector('.pagination')
