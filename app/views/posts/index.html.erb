@@ -3,4 +3,11 @@
   <h2 class="d-inline-block"><%= @user.name %></h2>
   <p class="right">Number of Posts: <%= @user.posts.count %></p>
 </div>
+
+<% if @posts.any? %>
+  <h3>Here is a list of posts for a given user.</h3>
+<% else %>
+  <h3>No posts available for this user.</h3>
+<% end %>
+
 <%= render @posts %>
