@@ -1,0 +1,19 @@
+<%= form_with(model: @user, url: user_path(@user), local: true, html: { class: 'needs-validation', novalidate: true }) do |f| %>
+  <div class="mb-5">
+    <%= f.text_field :name, class: 'form-control', placeholder: 'Name', required: true %>
+  </div>
+
+  <div class="mb-5">
+    <%= f.number_field :posts_counter, class: 'form-control', placeholder: 'Posts counter', required: true %>
+  </div>
+
+  <div class="mb-5">
+    <%= f.text_field :photo, class: 'form-control', placeholder: 'Photo', required: true %>
+  </div>
+
+  <div class="mb-5">
+    <%= f.text_area :bio, class: 'form-control', placeholder: 'Bio', required: true %>
+  </div>
+
+  <%= f.submit "Complete Profile", class: 'btn btn-secondary' %>
+<% end %>
