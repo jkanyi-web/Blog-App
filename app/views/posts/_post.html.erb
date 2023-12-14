@@ -8,4 +8,7 @@
       <% end %>
     </div>
   <% end %>
+  <% if can? :destroy, post %>
+    <%= link_to 'Delete', post_path(post), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+  <% end %>
 </div>
