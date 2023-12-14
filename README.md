@@ -120,6 +120,13 @@ rspec --format documentation
 - Twitter: [@V_Kanyi](https://twitter.com/V_Kanyi)
 - LinkedIn: [LinkedIn](https://linkedin.com/in/victor-kanyi)
 
+👤 **Manezeu Patricia**
+
+- GitHub: [@githubhandle](https://github.com/patriciachrysy)
+- Twitter: [@twitterhandle](https://twitter.com/ManezeuP)
+- LinkedIn: [LinkedIn](https://www.linkedin.com/in/manezeu-patricia-chrystelle/)
+
+
 ## 🔭 Future Features <a name="future-features"></a>
 
 - Add comment likes feature.
