@@ -2,6 +2,10 @@ Rails.application.routes.draw do
   root "users#index"
 
   devise_for :users
+  devise_scope :user do
+    get "/login" => "devise/sessions#new"
+    get "/logout" => "devise/sessions#destroy"
+  end
 
   resources :users, only: [:index, :show, :update] do
     collection do

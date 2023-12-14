@@ -23,20 +23,18 @@ Rails.application.configure do
   end
   config.active_storage.service = :local
 
-  config.action_mailer.raise_delivery_errors = false
-
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.perform_deliveries = true
   config.action_mailer.perform_caching = false
 
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    address: 'smtp.gmail.com',
-    port: 587,
-    domain: 'example.com',
-    user_name: 'jkanyi757',
-    password: 'victorkanyi',
-    authentication: 'plain',
-    enable_starttls_auto: true
+    :user_name => 'a8f3e8124baae3',
+    :password => '99fd5327ec6b7d',
+    :address => 'sandbox.smtp.mailtrap.io',
+    :port => '2525',
+    :authentication => :cram_md5
   }
 
   config.active_support.deprecation = :log
@@ -54,5 +52,4 @@ Rails.application.configure do
   config.assets.quiet = true
 
   config.action_controller.raise_on_missing_callback_actions = true
-  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
 end
