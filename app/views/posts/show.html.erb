@@ -5,17 +5,21 @@
   <p><%= @post.text %></p>
 
   <%= form_with model: [@user, @post, @post.likes.build], local: true do |f| %>
-    <%= f.submit "Like" %>
+    <%= f.submit "Like", class: 'btn btn-dark' %>
   <% end %>
 </div>
 
-<div class="jumbotron shadow p-5">
-  <%= render @post.comments %>
+<div class="card shadow p-5">
+  <div class="card-body">
+    <%= render @post.comments %>
 
-  <%= form_with model: [@user, @post, @post.comments.build] do |f| %>
-    <%= f.label :text %>
-    <%= f.text_area :text %>
+    <%= form_with model: [@user, @post, @post.comments.build], class: 'mt-3' do |f| %>
+      <div class="form-group">
+        <%= f.label :text, class: 'form-label' %>
+        <%= f.text_area :text, class: 'form-control' %>
+      </div>
 
-    <%= f.submit "Add Comment" %>
-  <% end %>
+      <%= f.submit "Add Comment", class: 'btn btn-dark mt-2' %>
+    <% end %>
+  </div>
 </div>

@@ -19,11 +19,11 @@
         </div>
       <% end %>
 
-      <div class="actions mt-5">
+      <div class="actions mt-5 mb-3">
         <%= f.submit "Log in", class: "btn btn-secondary w-100" %>
       </div>
+
+      <%= render "devise/shared/links" %>
     <% end %>
   </div>
 </div>
-
-<%= render "devise/shared/links" %>

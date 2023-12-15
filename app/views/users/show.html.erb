@@ -2,6 +2,7 @@
   <%= image_tag(@user.photo || 'default_image.jpg', alt: @user.name, class: 'user-image') %>
   <h2 class="display-2 font-weight-bold mt-2 d-inline-block"><%= @user.name %></h2>
   <p class="right">Number of posts: <%= @user.posts.count %></p>
+  <%= link_to 'Add a post', new_user_post_path(current_user), class: 'btn btn-dark' %>
 </div>
 
 <div class="jumbotron shadow p-3">

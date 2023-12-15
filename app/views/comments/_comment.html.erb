@@ -1,3 +1,8 @@
-<div class="comment">
-  <p><%= comment.user.name %>: <%= comment.text %></p>
-</div>
+<p class="card-text d-inline-block mr-2"><strong><%= comment.user.name %>:</strong> <%= comment.text %></p>
+<% if can? :destroy, comment %>
+  <%= form_with url: user_post_comment_path(@user, @post, comment), method: :post, class: 'd-inline' do %>
+    <%= hidden_field_tag :_method, :delete %>
+    <%= submit_tag 'Delete', class: 'btn btn-sm btn-danger' %>
+  <% end %>
+<% end %>
+<hr>
