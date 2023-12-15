@@ -1,4 +1,6 @@
 class PostsController < ApplicationController
+  before_action :set_user
+
   def index
     @user = User.find(params[:user_id])
     @posts = @user.posts.includes({ comments: :user }, :likes).page(params[:page]).per(2)
@@ -13,16 +15,15 @@ class PostsController < ApplicationController
   end
 
   def new
-    @user = User.find(params[:user_id])
     @post = @user.posts.build
   end
 
   def create
-    @user = User.find(params[:user_id])
-    @post = @user.posts.build(post_params)
-
+    @post = current_user.posts.build(post_params)
+    @post.comments_counter = 0
+    @post.likes_counter = 0
     if @post.save
-      redirect_to user_post_path(@user, @post), notice: 'Post was successfully created!'
+      redirect_to user_post_path(@user, @post), notice: 'Post was successfully created.'
     else
       render :new
     end
@@ -37,6 +38,10 @@ class PostsController < ApplicationController
   end
 
   private
+
+  def set_user
+    @user = User.find(params[:user_id])
+  end
 
   def post_params
     params.require(:post).permit(:title, :text)
