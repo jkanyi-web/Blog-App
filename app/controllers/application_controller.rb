@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  # before_action :authenticate_user!
+  before_action :authenticate_user_from_token!
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   protected
@@ -19,9 +19,9 @@ class ApplicationController < ActionController::Base
 
   private
 
-  def authenticate_user
+  def authenticate_user_from_token!
     header = request.headers['Authorization']
-    header = header.split(' ').last if header
+    header = header.split.last if header
     begin
       @decoded = JsonWebToken.decode(header)
       @current_user = User.find(@decoded[:id])
@@ -29,4 +29,6 @@ class ApplicationController < ActionController::Base
       render json: { errors: e.message }, status: :unauthorized
     end
   end
+
+  attr_reader :current_user
 end
