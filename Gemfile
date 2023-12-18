@@ -57,6 +57,8 @@ group :development, :test do
   gem 'rails-controller-testing'
   gem 'rspec-rails'
   gem 'webdrivers'
+  gem 'rswag-specs'
+
 end
 
 group :development do
@@ -85,3 +87,6 @@ gem 'shoulda-matchers'
 gem 'devise', '~> 4.9'
 
 gem 'jwt'
+
+gem 'rswag-api'
+gem 'rswag-ui'

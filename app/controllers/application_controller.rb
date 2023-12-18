@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  before_action :authenticate_user_from_token!
+  before_action :authenticate_user_from_token!, except: [:create], if: :sessions_controller?
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   protected
@@ -28,6 +28,10 @@ class ApplicationController < ActionController::Base
     rescue ActiveRecord::RecordNotFound, JWT::DecodeError => e
       render json: { errors: e.message }, status: :unauthorized
     end
+  end
+
+  def sessions_controller?
+    controller_name == 'sessions'
   end
 
   attr_reader :current_user
