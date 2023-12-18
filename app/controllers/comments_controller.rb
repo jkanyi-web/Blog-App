@@ -8,15 +8,12 @@ class CommentsController < ApplicationController
 
   def create
     @post = Post.find_by(id: params[:post_id])
-    @user = User.find_by(id: params[:user_id])
 
     if @post.nil?
       render json: { error: 'Post not found' }, status: :not_found
-    elsif @user.nil?
-      render json: { error: 'User not found' }, status: :not_found
     else
       @comment = @post.comments.new(comment_params)
-      @comment.user = @user
+      @comment.user = current_user
 
       if @comment.save
         render json: @comment, status: :created
