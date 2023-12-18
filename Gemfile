@@ -83,3 +83,5 @@ gem 'rubocop', '>= 1.0', '< 2.0'
 gem 'shoulda-matchers'
 
 gem 'devise', '~> 4.9'
+
+gem 'jwt'

@@ -1,17 +1,28 @@
 class CommentsController < ApplicationController
+  skip_before_action :verify_authenticity_token, only: [:create]
+
   def new
     @post = Post.find(params[:post_id])
     @comment = @post.comments.build
   end
 
   def create
-    @post = Post.find(params[:post_id])
-    @comment = @post.comments.build(comment_params.merge(user_id: current_user.id))
+    @post = Post.find_by(id: params[:post_id])
+    @user = User.find_by(id: params[:user_id])
 
-    if @comment.save
-      redirect_to user_post_path(@post.author, @post)
+    if @post.nil?
+      render json: { error: 'Post not found' }, status: :not_found
+    elsif @user.nil?
+      render json: { error: 'User not found' }, status: :not_found
     else
-      render 'new'
+      @comment = @post.comments.new(comment_params)
+      @comment.user = @user
+
+      if @comment.save
+        render json: @comment, status: :created
+      else
+        render json: { error: 'Comment could not be created', details: @comment.errors }, status: :unprocessable_entity
+      end
     end
   end
 
