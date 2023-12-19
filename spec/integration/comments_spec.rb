@@ -11,10 +11,10 @@ describe 'Comments API' do
 
       response '200', 'comments retrieved' do
         let(:user) { User.create!(email: 'jkanyi757@gmail.com', password: 'victor') }
-        let(:post) { user.posts.create!(title: 'Test Post', comments_counter: 0, likes_counter: 0) }
+        let(:blog_post) { user.posts.create!(title: 'Test Post', comments_counter: 0, likes_counter: 0) }
         let(:user_id) { user.id }
-        let(:post_id) { post.id }
-        let(:Authorization) { 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MiwiZXhwIjoxNzA4MDk0MjYxfQ.5e4oPEwSkkU_Ct6lZw3KFlZPnRqtBb9gh7H0aDIUEus' }
+        let(:post_id) { blog_post.id }
+        let(:Authorization) { "Bearer #{JsonWebToken.encode(id: user.id)}" }
         run_test!
       end
     end
@@ -35,21 +35,21 @@ describe 'Comments API' do
 
       response '200', 'comment created' do
         let(:user) { User.create!(email: 'jkanyi757@gmail.com', password: 'victor') }
-        let(:post) { user.posts.create!(title: 'Test Post', comments_counter: 0, likes_counter: 0) }
+        let(:blog_post) { user.posts.create!(title: 'Test Post', comments_counter: 0, likes_counter: 0) }
         let(:user_id) { user.id }
-        let(:post_id) { post.id }
+        let(:post_id) { blog_post.id }
         let(:comment_params) { { text: 'A comment' } }
-        let(:Authorization) { 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MiwiZXhwIjoxNzA4MDk0MjYxfQ.5e4oPEwSkkU_Ct6lZw3KFlZPnRqtBb9gh7H0aDIUEus' }
+        let(:Authorization) { "Bearer #{JsonWebToken.encode(id: user.id)}" }
         run_test!
       end
 
       response '422', 'invalid request' do
         let(:user) { User.create!(email: 'jkanyi757@gmail.com', password: 'victor') }
-        let(:post) { user.posts.create!(title: 'Test Post', comments_counter: 0, likes_counter: 0) }
+        let(:blog_post) { user.posts.create!(title: 'Test Post', comments_counter: 0, likes_counter: 0) }
         let(:user_id) { user.id }
-        let(:post_id) { post.id }
+        let(:post_id) { blog_post.id }
         let(:comment_params) { { text: '' } }
-        let(:Authorization) { 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MiwiZXhwIjoxNzA4MDk0MjYxfQ.5e4oPEwSkkU_Ct6lZw3KFlZPnRqtBb9gh7H0aDIUEus' }
+        let(:Authorization) { "Bearer #{JsonWebToken.encode(id: user.id)}" }
         run_test!
       end
     end
